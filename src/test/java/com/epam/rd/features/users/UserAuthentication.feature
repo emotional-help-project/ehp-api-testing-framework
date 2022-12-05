@@ -1,0 +1,1 @@
+Feature: User authentifucation feature for Emotional Help Project
