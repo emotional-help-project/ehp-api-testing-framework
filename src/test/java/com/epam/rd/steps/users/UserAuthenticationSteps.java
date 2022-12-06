@@ -19,17 +19,41 @@ public class UserAuthenticationSteps {
                 "    \"age\": " + age + "\n" +
                 "}";
         RequestsUtils.post("account/signup", body);
-        System.out.println(ResponseUtils.getResponse().extract().body());
     }
 
     @Then("Validate user creation status")
     public void validateUserCreationStatus() {
         int actualStatusCode = ResponseUtils.getStatusCodeFromResponse();
-        Assert.assertEquals(actualStatusCode, HttpStatus.SC_OK);
+        Assert.assertEquals(actualStatusCode, HttpStatus.SC_OK); //200
     }
 
     @Then("Validate the response of user registration request")
     public void validateTheResponseOfUserRegistrationRequest() {
         ResponseUtils.validateResponseAgainstJSONSchema("schemas/usersSchemas/userRegistrationResponseSchema.json");
+    }
+
+    @Then("Validate user creation failure status")
+    public void validateUserCreationFailureStatus() {
+        int actualStatusCode = ResponseUtils.getStatusCodeFromResponse();
+        Assert.assertEquals(actualStatusCode, HttpStatus.SC_BAD_REQUEST);  //400
+    }
+
+    @When("Login with {string} email, {string} password")
+    public void loginWithEmailPassword(String email, String password) {
+        String body = "{\n" +
+                "    \"email\": \"" + email + "\",\n" +
+                "    \"password\": \"" + password + "\"\n" +
+                "}";
+        RequestsUtils.post("account/signin", body);
+    }
+
+    @Then("Validate login success response values")
+    public void validateLoginSuccessResponseValues() {
+        ResponseUtils.validateResponseAgainstJSONSchema("schemas/usersSchemas/loginSuccessResponseSchema.json");
+    }
+
+    @Then("Validate login failure response")
+    public void validateLoginFailureResponse() {
+        Assert.assertEquals(ResponseUtils.getStringFromResponse("message"), "Bad credentials");
     }
 }

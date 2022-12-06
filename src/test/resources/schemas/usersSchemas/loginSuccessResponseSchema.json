@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean"
+    },
+    "token": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "integer"
+    },
+    "firstName": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "success",
+    "token",
+    "userId",
+    "firstName"
+  ]
+}
