@@ -24,7 +24,7 @@ public class UserAuthenticationSteps {
     @Then("Validate user creation status")
     public void validateUserCreationStatus() {
         int actualStatusCode = ResponseUtils.getStatusCodeFromResponse();
-        Assert.assertEquals(actualStatusCode, HttpStatus.SC_OK); //200
+        Assert.assertEquals(actualStatusCode, HttpStatus.SC_OK);
     }
 
     @Then("Validate the response of user registration request")
@@ -35,7 +35,7 @@ public class UserAuthenticationSteps {
     @Then("Validate user creation failure status")
     public void validateUserCreationFailureStatus() {
         int actualStatusCode = ResponseUtils.getStatusCodeFromResponse();
-        Assert.assertEquals(actualStatusCode, HttpStatus.SC_BAD_REQUEST);  //400
+        Assert.assertEquals(actualStatusCode, HttpStatus.SC_BAD_REQUEST);
     }
 
     @When("Login with {string} email, {string} password")
