@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "firstName": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 20
+    },
+    "lastName": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 20
+    },
+    "email": {
+      "type": "string",
+      "minLength": 8,
+      "pattern": "[a-zA-Z0-9-_!#$%&’*+/=?`{|}~^.]+@[a-zA-Z0-9.]+$",
+      "uniqueitem": true
+    },
+    "gender": {
+      "type": "string",
+      "enum" : ["MALE", "FEMALE", "OTHER"]
+    },
+    "age": {
+      "type": "integer",
+      "maxLength": 5
+    },
+    "role": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "firstName",
+    "lastName",
+    "email",
+    "gender",
+    "age"
+  ]
+}
