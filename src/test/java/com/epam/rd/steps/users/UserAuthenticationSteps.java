@@ -57,4 +57,18 @@ public class UserAuthenticationSteps {
         Assert.assertEquals(ResponseUtils.getStringFromResponse("message"), "Bad credentials",
                 "The email or password is not correct");
     }
+
+    @When("User registration data {string} firstname, {string} lastname, {string} email, {string} password, {string} confirmPassword, {string} gender, {int} age")
+    public void userRegistrationDataFirstnameLastnameEmailPasswordConfirmPasswordGenderAgeAge(String firstname, String lastname, String email, String password, String confirmPassword, String gender, int age) {
+        String body = "{\n" +
+                "    \"firstName\":\" " + firstname + " \",\n" +
+                "    \"lastName\":\" " + lastname + "\",\n" +
+                "    \"email\": \"" + email + "\",\n" +
+                "    \"password\":\" " + password + "\",\n" +
+                "    \"confirmPassword\":\" " + confirmPassword + "\",\n" +
+                "    \"gender\":\" " + gender + "\",\n" +
+                "    \"age\": " + age + "\n" +
+                "}";
+        RequestsUtils.post("account/signup", body);
+    }
 }

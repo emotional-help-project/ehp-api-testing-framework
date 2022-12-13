@@ -47,6 +47,18 @@ public class RequestsUtils {
         logger.info(response.extract().body().asPrettyString());
     }
 
+    public static void put(String endpoint, Object body) {
+        logger.info(endpoint, body);
+        response = RestAssured
+                .given()
+                .spec(getRequestSpecification())
+                .body(body)
+                .when()
+                .put(endpoint)
+                .then();
+        logger.info(response.extract().body().asPrettyString());
+    }
+
     private static RequestSpecification getRequestSpecification() {
         RequestSpecBuilder spec = new RequestSpecBuilder();
         return spec
